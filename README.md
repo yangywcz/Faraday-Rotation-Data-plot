@@ -1,6 +1,6 @@
-# Faraday-Rotation-Data_plot
+# Faraday-Rotation-Data-plot
 处理东方晨景公司测得法拉第旋角原始数据
-
+![alt text](https://github.com/yangywcz/Faraday-Rotation-Data-plot/raw/main/GUI_detail.png)
 ## 下载 & update history
 [Release页下载](https://github.com/yangywcz/Faraday-Rotation-Data_plot/releases)
 - 目前因为PySide6和PyInstaller最新版本尚未兼容，分发版本仍为使用PySide2编写的v0.8版本
