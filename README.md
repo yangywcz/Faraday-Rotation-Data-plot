@@ -8,7 +8,7 @@
 ## 描述
 根据法拉第测试方法，从光电流求出法拉第旋角的公式如下
 
-<img src="https://latex.codecogs.com/svg.latex?\theta%20=\Delta%20-\mathrm{arc}\sin%20\left(%20\sqrt{\frac{I}{I_0}\sin%20\Delta}%20\right)" title="\theta =\Delta -\mathrm{arc}\sin \left( \sqrt{\frac{I}{I_0}\sin \Delta} \right)" />
+<img src="https://latex.codecogs.com/svg.latex?\theta%20=\Delta%20-\mathrm{arc}\sin%20\left(%20\sqrt{\frac{I}{I_0}}\sin%20\Delta%20\right)" title="\theta =\Delta -\mathrm{arc}\sin \left( \sqrt{\frac{I}{I_0}}\sin \Delta \right)" />
 
 - Δ是在检偏器上提前预设的旋转角，通常为2°或4°，根据公式可得法拉第旋角，单位通常为deg
 - 比法拉第是指单位长度法拉第旋角，单位通常为deg/cm
