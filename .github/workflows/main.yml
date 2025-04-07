@@ -31,7 +31,7 @@ jobs:
         with:
           nuitka-version: main
           script-name: fr_gui_tk.py
-          mode: app
+          mode: standalone
           enable-plugins: tk-inter
           
       - name: Upload Artifact
