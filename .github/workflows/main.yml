@@ -31,7 +31,8 @@ jobs:
         with:
           nuitka-version: main
           script-name: fr_gui_tk.py
-          mode: standalone
+          mode: app
+          windows-icon-from-ico: ./logo.ico
           enable-plugins: tk-inter
           
       - name: Upload Artifact
