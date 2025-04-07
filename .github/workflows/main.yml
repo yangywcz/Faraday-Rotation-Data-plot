@@ -33,3 +33,9 @@ jobs:
           script-name: fr_gui_tk.py
           mode: standalone
           enable-plugins: tk-inter
+          
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: fr_gui_tk
+          path: build/fr_gui_tk.exe
