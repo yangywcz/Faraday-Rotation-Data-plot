@@ -1,6 +1,7 @@
 # nuitka-project: --windows-icon-from-ico={MAIN_DIRECTORY}/logo.ico
 # nuitka-project: --msvc=latest
 # nuitka-project: --onefile
+# nuitka-project: --enable-plugin=tk-inter
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
