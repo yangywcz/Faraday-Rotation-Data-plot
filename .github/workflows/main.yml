@@ -38,4 +38,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: fr_gui_tk
-          path: build/fr_gui_tk.exe
+          path: ./build/fr_gui_tk.exe
