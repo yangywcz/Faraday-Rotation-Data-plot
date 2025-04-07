@@ -1,8 +1,4 @@
-# nuitka-project: --standalone
-# nuitka-project: --enable-plugin=tk-inter
-# nuitka-project: --enable-plugin=numpy
 # nuitka-project: --windows-icon-from-ico={MAIN_DIRECTORY}/logo.ico
-# nuitka-project: --output-dir=output
 # nuitka-project: --msvc=latest
 import matplotlib.pyplot as plt
 import numpy as np
