@@ -2,5 +2,6 @@ numpy>=1.26.4
 pandas>=2.2.2
 matplotlib>=3.8.4
 xlrd>=2.0.1
-pyside6>=6.7.2
+maliang>=3.0.3
+maliang-mpl>=1.2.3
 scipy>=1.14.0
