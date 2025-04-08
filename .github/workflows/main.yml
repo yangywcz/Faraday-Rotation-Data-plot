@@ -34,7 +34,7 @@ jobs:
           mode: app
           windows-icon-from-ico: ./logo.ico
           enable-plugins: tk-inter
-          include-data-files: ./logo.ico
+          include-data-files: ./logo.ico=logo.ico
           windows-console-mode: disable
           
       - name: Upload Artifact
