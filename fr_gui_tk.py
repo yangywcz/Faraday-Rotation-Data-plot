@@ -155,7 +155,7 @@ class Application():
     
 
 if __name__ == '__main__':
-    root = maliang.Tk((960, 830), title="法拉第测试绘图",icon='logo.ico')
+    root = maliang.Tk((960, 830), title="法拉第测试绘图")
     root.resizable(0,0)
     root.center()
     app = Application(master=root)
