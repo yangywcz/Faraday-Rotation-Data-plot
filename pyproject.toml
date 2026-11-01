@@ -1,0 +1,22 @@
+[project]
+name = "faraday-rotation-data-plot"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "maliang-mpl>=1.2.3",
+    "maliang[ext,opt]>=3.0.3",
+    "matplotlib>=3.8.4",
+    "numpy>=1.26.4",
+    "pandas>=2.2.2",
+    "scipy>=1.14.0",
+    "xlrd>=2.0.1",
+]
+
+[project.scripts]
+faraday-rotation-data-plot = "faraday_rotation_data_plot:main"
+
+[build-system]
+requires = ["uv_build>=0.13.5,<0.14.0"]
+build-backend = "uv_build"

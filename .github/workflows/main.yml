@@ -1,44 +1,85 @@
-name: Build with Nuitka
+name: Build and Release Windows executable
 
-# Controls when the action will run. 
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
-#   push:
-#     branches: [ main ]
-#   pull_request:
-#     branches: [ main ]
   workflow_dispatch:
-#   schedule:
-#     - cron: 11 23 * * *
+    inputs:
+      version:
+        description: "Release version, for example 0.2.0"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: windows-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
- 
+
+      - name: Validate and write version
+        id: version
+        shell: pwsh
+        env:
+          RELEASE_VERSION: ${{ inputs.version }}
+        run: |
+          if ($env:RELEASE_VERSION -notmatch '^v?\d+\.\d+\.\d+(?:[-+][0-9A-Za-z.-]+)?$') {
+            throw "Version must follow semantic versioning, for example 0.2.0"
+          }
+          $version = $env:RELEASE_VERSION -replace '^v', ''
+          $path = "pyproject.toml"
+          $content = Get-Content $path -Raw
+          $updated = [regex]::Replace(
+            $content,
+            '(?m)^version\s*=\s*"[^"]+"',
+            "version = `"$version`"",
+            1
+          )
+          if ($updated -eq $content) {
+            throw "Could not find project version in pyproject.toml"
+          }
+          Set-Content $path $updated -NoNewline
+          "VERSION=$version" | Out-File $env:GITHUB_ENV -Append -Encoding utf8
+          "TAG=v$version" | Out-File $env:GITHUB_ENV -Append -Encoding utf8
+          "version=$version" | Out-File $env:GITHUB_OUTPUT -Append -Encoding utf8
+          "tag=v$version" | Out-File $env:GITHUB_OUTPUT -Append -Encoding utf8
+
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.13'
+          python-version: "3.14"
 
-      - name: Install Dependencies
+      - name: Install build dependencies
+        shell: pwsh
         run: |
-          pip install -r requirements.txt
- 
-      - name: Build with Nuitka
-        uses: Nuitka/Nuitka-Action@main
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt nuitka ordered-set zstandard
+          python -m pip install .
+
+      - name: Build executable
+        shell: pwsh
+        run: |
+          python -m nuitka `
+            --onefile `
+            --assume-yes-for-downloads `
+            --enable-plugin=tk-inter `
+            --windows-console-mode=disable `
+            --windows-icon-from-ico=logo.ico `
+            --include-package=faraday_rotation_data_plot `
+            --include-package-dir=src/faraday_rotation_data_plot `
+            --include-data-dir=assets=assets `
+            --include-data-files=logo.ico=logo.ico `
+            --include-data-files=SplashScreen.png=SplashScreen.png `
+            --output-dir=dist `
+            --output-filename=Faraday-Rotation-Data-plot.exe `
+            fr_gui_tk.py
+
+      - name: Create GitHub release and upload executable
+        uses: softprops/action-gh-release@v2
         with:
-          nuitka-version: main
-          script-name: fr_gui_tk.py
-          mode: app
-          windows-icon-from-ico: ./logo.ico
-          enable-plugins: tk-inter
-          windows-console-mode: disable
-          
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: exe
-          path: ./build/fr_gui_tk.exe
-          include-hidden-files: true
+          tag_name: ${{ steps.version.outputs.tag }}
+          name: Faraday Rotation Data Plot ${{ steps.version.outputs.tag }}
+          generate_release_notes: true
+          files: dist/Faraday-Rotation-Data-plot.exe
