@@ -1,12 +1,31 @@
 from __future__ import annotations
 
 import os
+import sys
 from ctypes import windll
 from pathlib import Path
 
 from matplotlib import font_manager
 
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
+PACKAGE_ROOT = Path(__file__).resolve().parent
+
+
+def _resource_root() -> Path:
+    candidates = [
+        PACKAGE_ROOT.parent.parent,
+        PACKAGE_ROOT.parent,
+        Path(sys.executable).resolve().parent,
+        Path.cwd(),
+    ]
+    if hasattr(sys, "_MEIPASS"):
+        candidates.insert(0, Path(sys._MEIPASS))
+    for candidate in candidates:
+        if (candidate / "logo.ico").exists() and (candidate / "SplashScreen.png").exists():
+            return candidate
+    return candidates[0]
+
+
+PROJECT_ROOT = _resource_root()
 ASSETS_DIR = PROJECT_ROOT / "assets"
 FONT_DIR = ASSETS_DIR / "fonts"
 ICON_PATH = PROJECT_ROOT / "logo.ico"
