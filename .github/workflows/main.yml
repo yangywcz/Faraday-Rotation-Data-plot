@@ -68,7 +68,6 @@ jobs:
             --windows-console-mode=disable `
             --windows-icon-from-ico=logo.ico `
             --include-package=faraday_rotation_data_plot `
-            --include-package-dir=src/faraday_rotation_data_plot `
             --include-data-dir=assets=assets `
             --include-data-files=logo.ico=logo.ico `
             --include-data-files=SplashScreen.png=SplashScreen.png `
