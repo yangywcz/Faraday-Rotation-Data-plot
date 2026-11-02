@@ -105,8 +105,27 @@ jobs:
             --output-filename=${{ matrix.executable }} `
             fr_gui_tk.py
 
-      - name: Build Unix executable
-        if: runner.os != 'Windows'
+      - name: Build macOS application
+        if: runner.os == 'macOS'
+        shell: bash
+        run: |
+          python -m nuitka \
+            --mode=app \
+            --assume-yes-for-downloads \
+            --enable-plugin=tk-inter \
+            --include-package=faraday_rotation_data_plot \
+            --include-data-dir=assets=assets \
+            --include-data-files=logo.ico=logo.ico \
+            --include-data-files=SplashScreen.png=SplashScreen.png \
+            --output-dir=dist \
+            --output-filename="${{ matrix.executable }}" \
+            fr_gui_tk.py
+          ditto -c -k --sequesterRsrc --keepParent \
+            "dist/${{ matrix.executable }}.app" \
+            "dist/${{ matrix.executable }}.app.zip"
+
+      - name: Build Linux executable
+        if: runner.os == 'Linux'
         shell: bash
         run: |
           python -m nuitka \
@@ -125,7 +144,10 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: faraday-${{ matrix.target }}
-          path: dist/${{ matrix.executable }}
+          path: >-
+            ${{ runner.os == 'macOS'
+                && format('dist/{0}.app.zip', matrix.executable)
+                || format('dist/{0}', matrix.executable) }}
           if-no-files-found: error
 
   build-win7:
