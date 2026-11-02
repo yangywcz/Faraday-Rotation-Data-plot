@@ -24,7 +24,11 @@ class ProcessingResult:
 
 def read_measurement(file_path: Path) -> pd.DataFrame:
     """Read and validate the columns used by the application."""
-    data = pd.read_excel(file_path, usecols=list(REQUIRED_COLUMNS))
+    data = pd.read_excel(
+        file_path,
+        usecols=list(REQUIRED_COLUMNS),
+        engine="calamine",
+    )
     if data.empty:
         raise ValueError("文件中没有可用数据")
     return data

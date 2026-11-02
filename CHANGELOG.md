@@ -26,6 +26,8 @@
 - 优化深色和浅色模式下的覆盖层、状态栏和控件布局。
 - 将旧 Qt 程序及相关资源移动到 `QT/` 目录归档。
 - 为不同平台使用独立构建流程；Windows 7 版不依赖 Maliang。
+- Windows 7 版采用 ttkbootstrap 深色主题和原生 Spinbox，并优化控件对齐与绘图区布局。
+- Excel 读取统一使用 `python-calamine`，移除 `xlrd` 依赖。
 
 ### 修复
 

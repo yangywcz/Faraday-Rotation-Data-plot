@@ -172,7 +172,10 @@ jobs:
             --collect-all matplotlib `
             --collect-all openpyxl `
             --collect-all python_calamine `
+            --collect-all ttkbootstrap `
             --add-data "logo.ico;." `
+            --add-data "assets/fonts/HONORSansCN-Regular.ttf;assets/fonts" `
+            --add-data "assets/fonts/HONORSansCN-Bold.ttf;assets/fonts" `
             fr_gui_win7.py
 
       - name: Upload Win7 executable
