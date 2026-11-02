@@ -6,7 +6,7 @@ readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
     "maliang-mpl>=1.2.3",
-    "maliang[ext,opt]>=3.0.3",
+    "maliang[opt]>=3.0.3",
     "matplotlib>=3.8.4",
     "numpy>=1.26.4",
     "pandas>=2.2.2",

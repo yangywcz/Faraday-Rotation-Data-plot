@@ -14,6 +14,8 @@
 - 增加状态栏拟合结果高亮、悬停提示和全精度复制。
 - 增加 MPL 的中文工具栏、零点参考线和坐标格式化。
 - 增加 GitHub Actions Windows exe 构建与 Release 发布流程。
+- 增加 Windows 10/11、macOS Intel/Apple Silicon 和 Ubuntu 的原生构建与 Release 资产。
+- 增加基于 Python 3.8 和原生 Tkinter 的 Windows 7 x86/x64 独立程序；x86 版不包含 SciPy 非线性拟合。
 
 ### 改进
 
@@ -23,6 +25,7 @@
 - 重新读取数据时重置斜率倍率为 `1.000x`。
 - 优化深色和浅色模式下的覆盖层、状态栏和控件布局。
 - 将旧 Qt 程序及相关资源移动到 `QT/` 目录归档。
+- 为不同平台使用独立构建流程；Windows 7 版不依赖 Maliang。
 
 ### 修复
 
@@ -32,8 +35,11 @@
 - 修复输入框滚轮只触发回调但不改变数值的问题。
 - 修复覆盖层遮挡文件选择对话框的问题。
 - 消除 Pillow `Image.getdata()` 弃用警告。
+- Windows 7 版改用 `python-calamine` 读取 Excel，避免 Pandas `xlrd` 引擎弃用警告。
+- 跨平台启动时仅在 Windows 调用 Windows 专用字体和窗口 API。
 
 ### 构建
 
 - 使用 `pyproject.toml` 和 `uv.lock` 管理项目依赖。
 - GitHub Actions 支持手动输入语义化版本号，并自动创建 GitHub Release 上传 exe。
+- Windows 7 使用 Python 3.8、旧版兼容科学计算依赖和 PyInstaller 独立打包。

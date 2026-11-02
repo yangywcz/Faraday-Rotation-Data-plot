@@ -93,7 +93,7 @@ name = "faraday-rotation-data-plot"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
-    { name = "maliang", extra = ["ext", "opt"] },
+    { name = "maliang", extra = ["opt"] },
     { name = "maliang-mpl" },
     { name = "matplotlib" },
     { name = "numpy" },
@@ -104,27 +104,13 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "maliang", extras = ["ext", "opt"], specifier = ">=3.0.3" },
+    { name = "maliang", extras = ["opt"], specifier = ">=3.0.3" },
     { name = "maliang-mpl", specifier = ">=1.2.3" },
     { name = "matplotlib", specifier = ">=3.8.4" },
     { name = "numpy", specifier = ">=1.26.4" },
     { name = "pandas", specifier = ">=2.2.2" },
     { name = "scipy", specifier = ">=1.14.0" },
     { name = "xlrd", specifier = ">=2.0.1" },
-]
-
-[[package]]
-name = "ffpyplayer"
-version = "4.5.4"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/a6/06/5e4bb661f2ff6069209eea7164e2856cff67d37d6e0f6e1fc5f83369899c/ffpyplayer-4.5.4.tar.gz", hash = "sha256:84488ac10e874e9ff0058b3104a9334b9446b407c42aa0d6b848d996b004e139", size = 89305, upload-time = "2026-10-30T13:58:40.468Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/d4/8a/417e34029cd4b3f4d1db01beecc4457a98fcca57f75fc3ff7ec894d1ce2b/ffpyplayer-4.5.4-cp314-cp314-macosx_10_15_universal2.whl", hash = "sha256:580f65e33d8537952df4d836d637b0cdc96e1b71cd32dcde46e52724f3ff350d", size = 38537899, upload-time = "2026-10-30T15:26:45.347Z" },
-    { url = "https://files.pythonhosted.org/packages/24/ee/fe48d54f91c27f1e04a63cd28743a1389d6e7086facdd89b9a2cdbdacc3a/ffpyplayer-4.5.4-cp314-cp314-macosx_10_15_x86_64.whl", hash = "sha256:c7eedcc801c0feb79657f35c09e221533c61b277ec816b9e3d11033f6d52e9fb", size = 20386803, upload-time = "2026-10-30T15:26:48.166Z" },
-    { url = "https://files.pythonhosted.org/packages/fc/de/616b76d57efe99699794a1604eb44ef30a1e494e7e25acdeb19b641f5722/ffpyplayer-4.5.4-cp314-cp314-macosx_11_0_arm64.whl", hash = "sha256:e1aa52f384db05bbe98176118302cc41d0d19e6380d9a13cbef0e0440b0d3f39", size = 18236707, upload-time = "2026-10-30T15:26:50.549Z" },
-    { url = "https://files.pythonhosted.org/packages/dd/4a/ace78ab76a3c66b8eb35cc42d884dd3b3bc495af7b523e19a8417f24dfba/ffpyplayer-4.5.4-cp314-cp314-manylinux2014_aarch64.manylinux_2_17_aarch64.whl", hash = "sha256:1663245f14d91bae42f1c09c132f95c7a2ba1bddda6159df87735dbc651ec645", size = 28049655, upload-time = "2026-10-31T23:27:20.795Z" },
-    { url = "https://files.pythonhosted.org/packages/3d/a3/23d14d2d2d23a213919dbf0710e31076de52fbe016f927e3f9f54f0ebb1f/ffpyplayer-4.5.4-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", hash = "sha256:384270daded5671dfc2f03b07ecc07e289c91e7f61868f5b75d4de864a3f582c", size = 29873409, upload-time = "2026-10-31T21:31:52.849Z" },
-    { url = "https://files.pythonhosted.org/packages/69/f4/e6940488307eb459ff84c6a92f365daaa112114a7b512afe414a8515e44e/ffpyplayer-4.5.4-cp314-cp314-win_amd64.whl", hash = "sha256:0c1483bb496006b1c46d125eff1253ac3ebba01e6ffe6af52ae2dc14754cac9a", size = 62360791, upload-time = "2026-10-30T13:58:21.552Z" },
 ]
 
 [[package]]
@@ -268,12 +254,6 @@ wheels = [
 ]
 
 [package.optional-dependencies]
-ext = [
-    { name = "maliang-media" },
-    { name = "maliang-mpl" },
-    { name = "maliang-table" },
-    { name = "maliang-three" },
-]
 opt = [
     { name = "darkdetect" },
     { name = "darkdetect", extra = ["macos-listener"], marker = "sys_platform == 'darwin'" },
@@ -281,21 +261,6 @@ opt = [
     { name = "pillow" },
     { name = "pywinstyles", marker = "sys_platform == 'win32'" },
     { name = "win32material", marker = "sys_platform == 'win32'" },
-]
-
-[[package]]
-name = "maliang-media"
-version = "1.1.3"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "ffpyplayer" },
-    { name = "maliang" },
-    { name = "pillow" },
-    { name = "typing-extensions" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/fa/a7/cc8366f8438f23a2e998d740742bec678023cb538a53adecbd788bf2f355/maliang_media-1.1.3.tar.gz", hash = "sha256:abdbade1be78b88e6c5677e35af90f453f88b81a73166956a1f7aba4a6caca7a", size = 10326, upload-time = "2025-01-13T14:56:25.427Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/89/05/1cb69bd4e5252031f8aa1c395132ab4448179dba72ea1be0dee1de7f9417/maliang_media-1.1.3-py3-none-any.whl", hash = "sha256:ce83dfd2e321a0bc79b0b46b70668d882e838f0511d1e742a06760e2f3463721", size = 9758, upload-time = "2025-01-13T14:56:22.824Z" },
 ]
 
 [[package]]
@@ -310,32 +275,6 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/09/53/35f78d9aeea8b1b21125ac6e22898afdcd13a0bfb98213cb70743d0e4e9a/maliang_mpl-1.2.3.tar.gz", hash = "sha256:cbe9ae457fcb10f7a5ef830fa4561cb3de1faeba0092f15f7b90db5cb7995f10", size = 7057, upload-time = "2025-01-13T14:54:03.36Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/4d/97/840b54871cbaa16de793ba0c63e68a622c679e3bb996c3ae438b5b976fb6/maliang_mpl-1.2.3-py3-none-any.whl", hash = "sha256:434941e0fe8c043f131c1fbef47c0c0b712480582396280288179d9be9ba6f7d", size = 7436, upload-time = "2025-01-13T14:54:01.701Z" },
-]
-
-[[package]]
-name = "maliang-table"
-version = "0.1.0"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "maliang" },
-    { name = "tksheet" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/75/52/c3b719268ba45859c3f0f941e161ee492c1309e8cb9d7a6ddf5f59ad9ff3/maliang_table-0.1.0.tar.gz", hash = "sha256:ccc921ff65bb92d224a27b84bf60dca74eb14b0a483d4d9f58b0e0016fb7f605", size = 4171, upload-time = "2025-09-13T09:54:08.284Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/bf/7e/7ac5e500794ff99f5b5ce0ad568d68905894fde50463de744db25e666ed9/maliang_table-0.1.0-py3-none-any.whl", hash = "sha256:22c9697de8458b3c4ff6727b3b72677abd0b8d290c07def7562cc96219f8291c", size = 5090, upload-time = "2025-09-13T09:54:06.717Z" },
-]
-
-[[package]]
-name = "maliang-three"
-version = "1.0.4"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "maliang" },
-    { name = "typing-extensions" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/c4/1c/52799e554a7eedee8241c4f1b4bb89fbea014fbbe4973f7e2fd8403a5cea/maliang_three-1.0.4.tar.gz", hash = "sha256:283e5d6c2db2dfe9b78c7ede43d036eceef03961fd01ac8b97ae30f5b6d06acf", size = 12057, upload-time = "2025-04-10T10:46:49.916Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/06/2f/52401d6264604fe3bfe688804de3d1312fddf89d078505473057afc20e85/maliang_three-1.0.4-py3-none-any.whl", hash = "sha256:f88ee70acc824f626b01a1a8f56a2d8e0b3829feb8e3d0a9d82c8833b45851de", size = 10773, upload-time = "2025-04-10T10:46:48.966Z" },
 ]
 
 [[package]]
@@ -656,15 +595,6 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/94/e7/b2c673351809dca68a0e064b6af791aa332cf192da575fd474ed7d6f16a2/six-1.17.0.tar.gz", hash = "sha256:ff70335d468e7eb6ec65b95b99d3a2836546063f63acc5171de367e834932a81", size = 34031, upload-time = "2024-12-04T17:35:28.174Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/b7/ce/149a00dd41f10bc29e5921b496af8b574d8413afcd5e30dfa0ed46c2cc5e/six-1.17.0-py2.py3-none-any.whl", hash = "sha256:4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274", size = 11050, upload-time = "2024-12-04T17:35:26.475Z" },
-]
-
-[[package]]
-name = "tksheet"
-version = "7.6.0"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/a1/28/4e83480a2c1d41d25fbae2b613847ead6d9499a2d7eec0000bf17aed2f30/tksheet-7.6.0.tar.gz", hash = "sha256:42d0618b10184294a85489a474ae747097483dd9a47b4385ba12b1afa8648e1a", size = 199108, upload-time = "2026-03-11T17:49:25.335Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/51/a2/406016281147857d919c95a9efb6926b8ada683d2fc4de8c1fabc9d5aefa/tksheet-7.6.0-py3-none-any.whl", hash = "sha256:c586d7d04f93bace45f97888b12ea97cbb48dea4f1c3b7931e89491fdf18f9bb", size = 202704, upload-time = "2026-03-11T17:49:22.644Z" },
 ]
 
 [[package]]

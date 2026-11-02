@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import os
 import sys
-from ctypes import windll
 from pathlib import Path
 
 from matplotlib import font_manager
@@ -44,5 +43,7 @@ def load_fonts() -> str:
             continue
         font_manager.fontManager.addfont(str(font_path))
         if os.name == "nt":
+            from ctypes import windll
+
             windll.gdi32.AddFontResourceExW(str(font_path), 0x10, 0)
     return HONOR_SANS_CN

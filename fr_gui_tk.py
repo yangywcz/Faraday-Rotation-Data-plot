@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import sys
 import tkinter as tk
 
 import maliang
@@ -11,6 +12,8 @@ from faraday_rotation_data_plot.resources import ICON_PATH, SPLASH_PATH
 
 def _prepare_splash_image() -> tuple[Image.Image, str]:
     image = Image.open(SPLASH_PATH).convert("RGBA")
+    if sys.platform != "win32":
+        return image, ""
     used_colors = {pixel[:3] for pixel in image.get_flattened_data()}
     transparent_rgb = next(
         color
@@ -52,9 +55,13 @@ def show_splash(root: maliang.Tk) -> tk.Toplevel:
     splash_image = ImageTk.PhotoImage(image)
     splash = tk.Toplevel(root)
     splash.overrideredirect(True)
-    splash.configure(background=transparent_color)
-    splash.wm_attributes("-transparentcolor", transparent_color)
-    splash.wm_attributes("-alpha", 0.0)
+    if sys.platform == "win32":
+        splash.configure(background=transparent_color)
+        splash.wm_attributes("-transparentcolor", transparent_color)
+    try:
+        splash.wm_attributes("-alpha", 0.0)
+    except tk.TclError:
+        pass
     splash_image_label = tk.Label(
         splash,
         image=splash_image,
@@ -76,7 +83,10 @@ def show_splash(root: maliang.Tk) -> tk.Toplevel:
 
 def fade_in(window: tk.Toplevel, step: int = 0) -> None:
     alpha = min(step / 14, 1.0)
-    window.wm_attributes("-alpha", alpha)
+    try:
+        window.wm_attributes("-alpha", alpha)
+    except tk.TclError:
+        return
     if alpha < 1.0:
         window.after(25, fade_in, window, step + 1)
 
@@ -88,7 +98,10 @@ def fade_out(
     on_finished=None,
 ) -> None:
     alpha = max(step / 14, 0.0)
-    window.wm_attributes("-alpha", alpha)
+    try:
+        window.wm_attributes("-alpha", alpha)
+    except tk.TclError:
+        alpha = 0.0
     if alpha > 0.0:
         window.after(32, fade_out, root, window, step - 1, on_finished)
     else:
@@ -99,7 +112,9 @@ def fade_out(
 
 
 def main() -> None:
-    root = maliang.Tk((960, 830), title="法拉第测试绘图", icon=str(ICON_PATH))
+    root = maliang.Tk((960, 830), title="法拉第测试绘图")
+    if sys.platform == "win32":
+        root.iconbitmap(str(ICON_PATH))
     root.resizable(0, 0)
     root.center()
     splash = show_splash(root)
