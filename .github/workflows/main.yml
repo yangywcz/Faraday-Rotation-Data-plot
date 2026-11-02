@@ -113,6 +113,7 @@ jobs:
             --mode=app \
             --assume-yes-for-downloads \
             --enable-plugin=tk-inter \
+            --macos-app-icon=logo.png \
             --include-package=faraday_rotation_data_plot \
             --include-data-dir=assets=assets \
             --include-data-files=logo.ico=logo.ico \
@@ -121,7 +122,7 @@ jobs:
             --output-filename="${{ matrix.executable }}" \
             fr_gui_tk.py
           ditto -c -k --sequesterRsrc --keepParent \
-            "dist/${{ matrix.executable }}.app" \
+            "dist/fr_gui_tk.app" \
             "dist/${{ matrix.executable }}.app.zip"
 
       - name: Build Linux executable
